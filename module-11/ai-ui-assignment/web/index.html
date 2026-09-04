@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Functions Dashboard</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' fill='none' stroke='%2338b488' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='16' cy='8' r='5'/%3E%3Cpath d='M10 24l3-10h6l3 10'/%3E%3Cpath d='M8 27h16'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-illustration">
+        <svg viewBox="0 0 100 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="22" r="11" stroke="currentColor" stroke-width="2.2"/>
+          <path d="M32 52c-7 9-12 18-7 36" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M68 52c7 9 12 18 7 36" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M36 48v62" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M64 48v62" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M50 34v78" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M34 112l-12 34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M66 112l12 34" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M8 20v128" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3 4" opacity="0.6"/>
+          <line x1="4" y1="20" x2="12" y2="20" stroke="var(--accent)" stroke-width="1.2"/>
+          <line x1="4" y1="148" x2="12" y2="148" stroke="var(--accent)" stroke-width="1.2"/>
+          <ellipse cx="50" cy="74" rx="24" ry="7" stroke="var(--accent)" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="header-text">
+        <h1>Fitness Functions Dashboard</h1>
+        <p class="subtitle">Powered by C++ WebAssembly &mdash; By Garvin Yu</p>
+      </div>
+    </header>
+
+    <div class="cards-row">
+      <div class="card" id="bmi-card">
+        <div class="card-header">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="2" width="18" height="20" rx="2"/>
+            <line x1="7" y1="8" x2="17" y2="8"/>
+            <line x1="7" y1="12" x2="17" y2="12"/>
+            <line x1="9" y1="16" x2="15" y2="16"/>
+          </svg>
+          <h2>BMI Calculator</h2>
+        </div>
+        <div class="card-body">
+          <div class="input-group">
+            <label for="height-input">Height (m)</label>
+            <div class="slider-row">
+              <input type="range" id="height-slider" min="1.0" max="2.5" step="0.01" value="1.70">
+              <input type="number" id="height-input" min="1.0" max="2.5" step="0.01" value="1.70">
+            </div>
+          </div>
+          <div class="input-group">
+            <label for="weight-input">Weight (kg)</label>
+            <div class="slider-row">
+              <input type="range" id="weight-slider" min="30" max="200" step="0.1" value="61.23">
+              <input type="number" id="weight-input" min="30" max="200" step="0.1" value="61.23">
+            </div>
+          </div>
+          <div class="bmi-result">
+            <span class="bmi-label">BMI</span>
+            <span class="bmi-value" id="bmi-value">--</span>
+            <span class="bmi-category" id="bmi-category"></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" id="steps-card">
+        <div class="card-header">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <ellipse cx="14" cy="7" rx="4" ry="3"/>
+            <circle cx="12.5" cy="12.5" r="1.5"/>
+            <circle cx="8" cy="12" r="1.2"/>
+            <circle cx="5.5" cy="14.5" r="1.2"/>
+            <circle cx="3.5" cy="16.5" r="1.5"/>
+          </svg>
+          <h2>Step Progress Tracker</h2>
+        </div>
+        <div class="card-body">
+          <div class="input-group">
+            <label for="steps-input">Steps Taken</label>
+            <input type="number" id="steps-input" min="0" max="1000000" value="8000">
+          </div>
+          <div class="input-group">
+            <label for="goal-input">Daily Goal</label>
+            <input type="number" id="goal-input" min="1" max="1000000" value="20000">
+          </div>
+          <div class="ring-container">
+            <div class="ring-wrapper" id="ring-wrapper">
+              <svg class="progress-ring" viewBox="0 0 200 200">
+                <circle class="ring-track" cx="100" cy="100" r="80"/>
+                <circle class="ring-fill" id="ring-fill" cx="100" cy="100" r="80"/>
+                <circle class="ring-handle" id="ring-handle" cx="100" cy="20" r="8"/>
+              </svg>
+              <div class="ring-center">
+                <span class="progress-text" id="progress-text">0%</span>
+                <span class="progress-subtext">of goal</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="profile-card">
+      <div class="card-header">
+          <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="7" r="4"/>
+            <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+          <h2>Profile Report</h2>
+      </div>
+      <div class="card-body">
+        <div class="profile-inputs">
+          <div class="input-group">
+            <label for="name-input">Name</label>
+            <input type="text" id="name-input" value="Garvin Yu">
+          </div>
+          <div class="input-group">
+            <label for="age-input">Age</label>
+            <input type="number" id="age-input" min="1" max="150" value="18">
+          </div>
+          <div class="input-group">
+            <label for="profile-height">Height (m)</label>
+            <input type="number" id="profile-height" min="1.0" max="2.5" step="0.01" value="1.70">
+          </div>
+          <div class="input-group">
+            <label for="profile-weight">Weight (kg)</label>
+            <input type="number" id="profile-weight" min="30" max="250" step="0.1" value="61.23">
+          </div>
+        </div>
+        <div class="profile-output" id="profile-output">Loading C++ functions...</div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      C++ WebAssembly compiled with Emscripten | Module 11 &mdash; AI UI Assignment
+    </footer>
+  </div>
+
+  <script>
+    var Module = {
+      onRuntimeInitialized: function () {
+        initUI();
+      }
+    };
+  </script>
+  <script src="app.js"></script>
+  <script src="fitness.js"></script>
+</body>
+</html>
